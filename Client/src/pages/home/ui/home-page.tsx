@@ -1,3 +1,5 @@
+import "./home-page.less";
+
 import { Component } from "solid-js";
 
 import { MainLayout } from "@widgets/layouts/main/ui";
