@@ -1,5 +1,7 @@
 import { children, Component, JSX } from "solid-js";
 
+import { Header } from "@widgets/header/ui";
+
 type MainLayoutProps = {
 	children: JSX.Element;
 };
@@ -7,5 +9,10 @@ type MainLayoutProps = {
 export const MainLayout: Component<MainLayoutProps> = (props) => {
 	const safeChildren = children(() => props.children);
 
-	return <>{safeChildren()}</>;
+	return (
+		<>
+			<Header />
+			{safeChildren()}
+		</>
+	);
 };
