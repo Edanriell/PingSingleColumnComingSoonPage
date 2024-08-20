@@ -12,7 +12,14 @@
 }
 
 .coming-soon {
+	position: relative;
 
+	@media (width >= 1440px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .coming-soon__text-content {
@@ -35,6 +42,12 @@
 		font-weight: 800;
 		color: var(--hei-se-black);
 	}
+
+	@media (width >= 1440px) {
+		font-size: 48rem;
+		line-height: 125%;
+		margin-bottom: 16rem;
+	}
 }
 
 .coming-soon__text {
@@ -44,17 +57,34 @@
 	text-align: center;
 	color: var(--hei-se-black);
 	margin-bottom: 32rem;
+
+	@media (width >= 1440px) {
+		font-size: 20rem;
+		margin-bottom: 40rem;
+	}
 }
 
 .coming-soon__notify-form {
 	position: relative;
 	margin-bottom: 72rem;
+
+	@media (width >= 1440px) {
+		margin-bottom: 94rem;
+	}
 }
 
 .notify-form {
 	display: flex;
 	flex-direction: column;
 	row-gap: 10rem;
+
+	@media (width >= 1440px) {
+		flex-direction: row;
+		row-gap: unset;
+		column-gap: 16rem;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 .notify-form__field {
@@ -77,6 +107,13 @@
 		color: var(--cuddle);
 		opacity: 1;
 	}
+
+	@media (width >= 1440px) {
+		min-width: 361rem;
+		font-size: 16rem;
+		line-height: 125%;
+		padding: 18rem 30rem;
+	}
 }
 
 .notify-form__submit-button {
@@ -96,6 +133,12 @@
 	text-align: center;
 	color: var(--white);
 	cursor: pointer;
+
+	@media (width >= 1440px) {
+		padding: 19rem 62rem 18rem 62rem;
+		font-size: 16rem;
+		min-width: 76rem;
+	}
 }
 
 .coming-soon__dashboard-image {
@@ -120,8 +163,8 @@
 	z-index: 2;
 
 	@media (width >= 1440px) {
-		width: 584rem;
-		height: 375rem;
+		width: 567rem;
+		height: 358rem;
 	}
 }
 
@@ -132,10 +175,12 @@
 	background: var(--cello);
 	position: absolute;
 	bottom: 10rem;
-	left: 11rem;
+	left: 16rem;
 	z-index: 2;
 
-	@media (width > 1440px) {
+	@media (width >= 1440px) {
+		bottom: 10rem;
+		left: 30rem;
 		width: 77rem;
 		height: 26rem;
 	}
@@ -154,12 +199,12 @@
 	background: var(--ufo-green);
 	position: absolute;
 	top: 47rem;
-	left: -18rem;
+	left: -13rem;
 	z-index: 1;
 
 	@media (width >= 1440px) {
 		top: 95rem;
-		left: -37rem;
+		left: -32rem;
 		width: 155rem;
 		height: 130rem;
 	}
@@ -172,20 +217,20 @@
 
 .dashboard-image__decorative-cross-rectangle--position--left {
 	top: 23rem;
-	left: -12rem;
+	left: -7rem;
 
 	@media (width >= 1440px) {
 		top: 45rem;
-		left: -23rem;
+		left: -17rem;
 	}
 }
 
 .dashboard-image__decorative-cross-rectangle--position--right {
-	bottom: -12rem;
-	right: -18rem;
+	bottom: -17rem;
+	right: -23rem;
 
 	@media (width >= 1440px) {
-		bottom: -24rem;
-		right: -36rem;
+		bottom: -32rem;
+		right: -44rem;
 	}
 }

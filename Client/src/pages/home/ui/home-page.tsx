@@ -53,16 +53,6 @@ export const HomePage: Component = () => {
 						<div class="dashboard-image__slack-logotype-wrapper">
 							<picture>
 								<source
-									type="image/webp"
-									media="(min-width: 1440px)"
-									srcset="/images/raster/slack-logotype-lg@1x.webp 1x, /images/raster/slack-logotype-lg@2x.webp 2x"
-								/>
-								<source
-									type="image/webp"
-									media="(min-width: 375px)"
-									srcset="/images/raster/slack-logotype-sm@1x.webp 1x, /images/raster/slack-logotype-sm@2x.webp 2x"
-								/>
-								<source
 									type="image/jpg"
 									media="(min-width: 1440px)"
 									srcset="/images/raster/slack-logotype-lg@1x.png 1x, /images/raster/slack-logotype-lg@2x.png 2x"
