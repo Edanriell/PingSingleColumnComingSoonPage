@@ -81,8 +81,42 @@ export const HomePage: Component = () => {
 							</picture>
 						</div>
 						<div class="dashboard-image__decorative-green-rectangle"></div>
-						<div class="dashboard-image__decorative-cross-rectangle dashboard-image__decorative-cross-rectangle--type--small"></div>
-						<div class="dashboard-image__decorative-cross-rectangle dashboard-image__decorative-cross-rectangle--type--large"></div>
+						<picture>
+							<source
+								type="image/svg+xml"
+								media="(min-width: 1440px)"
+								srcset="/images/vector/cross-rectangle-lg.svg"
+							/>
+							<source
+								type="image/svg+xml"
+								media="(min-width: 375px)"
+								srcset="/images/vector/cross-rectangle-sm.svg"
+							/>
+							<img
+								class="dashboard-image__decorative-cross-rectangle dashboard-image__decorative-cross-rectangle--position--left"
+								src="/images/vector/cross-rectangle-sm.svg"
+								srcSet="/images/vector/cross-rectangle-sm.svg"
+								alt=""
+							/>
+						</picture>
+						<picture>
+							<source
+								type="image/svg+xml"
+								media="(min-width: 1440px)"
+								srcset="/images/vector/cross-rectangle-lg.svg"
+							/>
+							<source
+								type="image/svg+xml"
+								media="(min-width: 375px)"
+								srcset="/images/vector/cross-rectangle-sm.svg"
+							/>
+							<img
+								class="dashboard-image__decorative-cross-rectangle dashboard-image__decorative-cross-rectangle--position--right"
+								src="/images/vector/cross-rectangle-sm.svg"
+								srcSet="/images/vector/cross-rectangle-sm.svg"
+								alt=""
+							/>
+						</picture>
 					</div>
 				</section>
 			</main>
