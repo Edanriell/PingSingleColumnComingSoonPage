@@ -1,9 +1,236 @@
 .home-page {
 	padding-left: 45rem;
 	padding-right: 45rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	@media (width >= 1440px) {
 		padding-left: 400rem;
 		padding-right: 400rem;
+	}
+}
+
+.coming-soon {
+	position: relative;
+
+	@media (width >= 1440px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.coming-soon__text-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.coming-soon__title {
+	font-family: var(--font-family), sans-serif;
+	font-weight: 300;
+	font-size: 22rem;
+	line-height: 145%;
+	text-align: center;
+	color: var(--shark-fin);
+	margin-bottom: 15rem;
+
+	> strong {
+		font-weight: 800;
+		color: var(--hei-se-black);
+	}
+
+	@media (width >= 1440px) {
+		font-size: 48rem;
+		line-height: 125%;
+		margin-bottom: 16rem;
+	}
+}
+
+.coming-soon__text {
+	font-family: var(--font-family), sans-serif;
+	font-weight: 300;
+	font-size: 12rem;
+	text-align: center;
+	color: var(--hei-se-black);
+	margin-bottom: 32rem;
+
+	@media (width >= 1440px) {
+		font-size: 20rem;
+		margin-bottom: 40rem;
+	}
+}
+
+.coming-soon__notify-form {
+	position: relative;
+	margin-bottom: 72rem;
+
+	@media (width >= 1440px) {
+		margin-bottom: 94rem;
+	}
+}
+
+.notify-form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10rem;
+
+	@media (width >= 1440px) {
+		flex-direction: row;
+		row-gap: unset;
+		column-gap: 16rem;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.notify-form__field {
+	display: flex;
+	flex-direction: column;
+}
+
+.notify-form__input {
+	border: 1rem solid var(--pale-phthalo-blue);
+	border-radius: 28rem;
+	box-shadow: 0 0 7rem 3rem rgba(0, 0, 0, 0);
+	background: var(--white);
+	font-family: var(--font-family), sans-serif;
+	font-weight: 300;
+	font-size: 12rem;
+	line-height: 167%;
+	padding: 10rem 32rem;
+
+	&::placeholder {
+		color: var(--cuddle);
+		opacity: 1;
+	}
+
+	@media (width >= 1440px) {
+		min-width: 361rem;
+		font-size: 16rem;
+		line-height: 125%;
+		padding: 18rem 30rem;
+	}
+}
+
+.notify-form__submit-button {
+	position: relative;
+}
+
+.button {
+	border-radius: 28rem;
+	box-shadow: 0 5rem 10rem 2rem rgba(76, 123, 243, 0.23);
+	background: var(--blue-oyster-cult);
+	padding-top: 12rem;
+	padding-bottom: 12rem;
+	font-family: var(--font-family), sans-serif;
+	font-weight: 600;
+	font-size: 12rem;
+	line-height: 133%;
+	text-align: center;
+	color: var(--white);
+	cursor: pointer;
+
+	@media (width >= 1440px) {
+		padding: 19rem 62rem 18rem 62rem;
+		font-size: 16rem;
+		min-width: 76rem;
+	}
+}
+
+.coming-soon__dashboard-image {
+	position: relative;
+	z-index: 2;
+}
+
+.dashboard-image {
+	width: 283rem;
+	height: 179rem;
+
+	@media (width >= 1440px) {
+		width: 567rem;
+		height: 358rem;
+	}
+}
+
+.dashboard-image__main-image {
+	width: 293rem;
+	height: 188rem;
+	position: relative;
+	z-index: 2;
+
+	@media (width >= 1440px) {
+		width: 567rem;
+		height: 358rem;
+	}
+}
+
+.dashboard-image__slack-logotype-wrapper {
+	border-radius: 1rem;
+	width: 38rem;
+	height: 13rem;
+	background: var(--cello);
+	position: absolute;
+	bottom: 10rem;
+	left: 16rem;
+	z-index: 2;
+
+	@media (width >= 1440px) {
+		bottom: 10rem;
+		left: 30rem;
+		width: 77rem;
+		height: 26rem;
+	}
+}
+
+.dashboard-image__slack-logotype {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dashboard-image__decorative-green-rectangle {
+	width: 77rem;
+	height: 65rem;
+	background: var(--ufo-green);
+	position: absolute;
+	top: 47rem;
+	left: -13rem;
+	z-index: 1;
+
+	@media (width >= 1440px) {
+		top: 95rem;
+		left: -32rem;
+		width: 155rem;
+		height: 130rem;
+	}
+}
+
+.dashboard-image__decorative-cross-rectangle {
+	position: absolute;
+	z-index: 1;
+}
+
+.dashboard-image__decorative-cross-rectangle--position--left {
+	top: 23rem;
+	left: -7rem;
+
+	@media (width >= 1440px) {
+		top: 45rem;
+		left: -17rem;
+	}
+}
+
+.dashboard-image__decorative-cross-rectangle--position--right {
+	bottom: -17rem;
+	right: -23rem;
+
+	@media (width >= 1440px) {
+		bottom: -32rem;
+		right: -44rem;
 	}
 }
