@@ -1,0 +1,28 @@
+.input__field {
+	display: flex;
+	flex-direction: column;
+}
+
+.input {
+	border: 1rem solid var(--pale-phthalo-blue);
+	border-radius: 28rem;
+	box-shadow: 0 0 7rem 3rem rgba(0, 0, 0, 0);
+	background: var(--white);
+	font-family: var(--font-family), sans-serif;
+	font-weight: 300;
+	font-size: 12rem;
+	line-height: 167%;
+	padding: 10rem 32rem;
+
+	&::placeholder {
+		color: var(--cuddle);
+		opacity: 1;
+	}
+
+	@media (width >= 1440px) {
+		min-width: 361rem;
+		font-size: 16rem;
+		line-height: 125%;
+		padding: 18rem 30rem;
+	}
+}

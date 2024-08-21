@@ -5,6 +5,7 @@ import { Component } from "solid-js";
 import { MainLayout } from "@widgets/layouts/main/ui";
 
 import { Button } from "@shared/ui/button/ui";
+import { Input } from "@shared/ui/input/ui";
 
 export const HomePage: Component = () => {
 	return (
@@ -18,18 +19,12 @@ export const HomePage: Component = () => {
 						<p class="coming-soon__text">Subscribe and get notified</p>
 					</div>
 					<form class="coming-soon__notify-form notify-form" method="post">
-						<div class="notify-form__field">
-							<label class="visually-hidden" for="email">
-								Email address
-							</label>
-							<input
-								class="notify-form__input"
-								type="email"
-								name="email"
-								id="email"
-								placeholder="Your email address…"
-							/>
-						</div>
+						<Input
+							name="email"
+							description="Email address"
+							type="email"
+							placeholder="Your email address…"
+						/>
 						<Button classes="notify-form__submit-button" type="submit">
 							Notify Me
 						</Button>
