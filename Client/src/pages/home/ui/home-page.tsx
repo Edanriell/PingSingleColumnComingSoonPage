@@ -4,6 +4,8 @@ import { Component } from "solid-js";
 
 import { MainLayout } from "@widgets/layouts/main/ui";
 
+import { Button } from "@shared/ui/button/ui";
+
 export const HomePage: Component = () => {
 	return (
 		<MainLayout>
@@ -28,9 +30,9 @@ export const HomePage: Component = () => {
 								placeholder="Your email address…"
 							/>
 						</div>
-						<button class="notify-form__submit-button button" type="submit">
+						<Button classes="notify-form__submit-button" type="submit">
 							Notify Me
-						</button>
+						</Button>
 					</form>
 					<div class="coming-soon__dashboard-image dashboard-image">
 						<picture>
