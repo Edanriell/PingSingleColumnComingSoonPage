@@ -2,10 +2,9 @@ import "./home-page.less";
 
 import { Component } from "solid-js";
 
-import { MainLayout } from "@widgets/layouts/main/ui";
+import { NotifyForm } from "@features/notify-form/ui";
 
-import { Button } from "@shared/ui/button/ui";
-import { Input } from "@shared/ui/input/ui";
+import { MainLayout } from "@widgets/layouts/main/ui";
 
 export const HomePage: Component = () => {
 	return (
@@ -18,17 +17,7 @@ export const HomePage: Component = () => {
 						</h1>
 						<p class="coming-soon__text">Subscribe and get notified</p>
 					</div>
-					<form class="coming-soon__notify-form notify-form" method="post">
-						<Input
-							name="email"
-							description="Email address"
-							type="email"
-							placeholder="Your email address…"
-						/>
-						<Button classes="notify-form__submit-button" type="submit">
-							Notify Me
-						</Button>
-					</form>
+					<NotifyForm classes="coming-soon__notify-form" />
 					<div class="coming-soon__dashboard-image dashboard-image">
 						<picture>
 							<source
