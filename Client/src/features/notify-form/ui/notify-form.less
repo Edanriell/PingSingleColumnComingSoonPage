@@ -1,0 +1,17 @@
+.notify-form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 10rem;
+
+	@media (width >= 1440px) {
+		flex-direction: row;
+		row-gap: unset;
+		column-gap: 16rem;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.notify-form__submit-button {
+	position: relative;
+}
