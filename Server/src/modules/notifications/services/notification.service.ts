@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
-
 import { PrismaService } from "../../prisma/prisma.service";
 import { LoggerService } from "../../logger/services";
 import { NotificationDto } from "../dtos";
@@ -16,10 +15,13 @@ export class NotificationService {
 		});
 
 		if (!notification) {
-			this.logger.error(`Notification with ID ${id} was not found.`, NotificationService.name);
-			throw new NotFoundException(`Notification with ID ${id} was not found.`, {
-				cause: new Error(),
-				description: `Notification with ID ${id} does not exist in the database.`
+			this.logger.error(
+				`Notification with ID ${id} was not found in the database.`,
+				NotificationService.name
+			);
+			throw new NotFoundException(`Notification not found.`, {
+				cause: new Error(`Notification with ID ${id} was not located in the database.`),
+				description: `The requested notification with ID ${id} does not exist in the system. Please verify the ID and try again.`
 			});
 		}
 
@@ -30,18 +32,17 @@ export class NotificationService {
 		const notificationsCount = await this.prisma.notification.count();
 
 		if (notificationsCount === 0) {
-			this.logger.error(`Any notifications were not found.`, NotificationService.name);
-			throw new NotFoundException("Notifications were not found.", {
-				cause: new Error(),
-				description: "There are no notifications in database."
+			this.logger.error("No notifications were found in the database.", NotificationService.name);
+			throw new NotFoundException("No notifications available.", {
+				cause: new Error("Database query returned zero results."),
+				description:
+					"The system could not retrieve any notifications because the database is currently empty."
 			});
 		}
 
 		const notifications = await this.prisma.notification.findMany();
 
-		return notifications.map((notification) => {
-			new NotificationDto(notification);
-		});
+		return notifications.map((notification) => new NotificationDto(notification));
 	}
 
 	async createNotification(data: NotificationDto): Promise<NotificationDto> {
@@ -50,15 +51,19 @@ export class NotificationService {
 				data
 			});
 			this.logger.log(
-				`Notification created with ID ${newNotification.id}.`,
+				`Notification successfully created with ID ${newNotification.id}.`,
 				NotificationService.name
 			);
 			return new NotificationDto(newNotification);
 		} catch (error) {
-			this.logger.error("Failed to create notification.", NotificationService.name);
-			throw new BadRequestException("Unable to create notification.", {
+			this.logger.error(
+				"Failed to create the notification due to an issue with the provided data.",
+				NotificationService.name
+			);
+			throw new BadRequestException("Notification creation failed.", {
 				cause: error,
-				description: "There was an issue with the provided data."
+				description:
+					"The system encountered an issue while attempting to create the notification. Please ensure all required data is correct and try again."
 			});
 		}
 	}
@@ -69,10 +74,13 @@ export class NotificationService {
 		});
 
 		if (!notification) {
-			this.logger.error(`Notification with ID ${id} was not found.`, NotificationService.name);
-			throw new NotFoundException(`Notification with ID ${id} was not found.`, {
-				cause: new Error(),
-				description: `Notification with ID ${id} does not exist in the database.`
+			this.logger.error(
+				`Notification with ID ${id} was not found in the database.`,
+				NotificationService.name
+			);
+			throw new NotFoundException(`Notification not found.`, {
+				cause: new Error(`Notification with ID ${id} does not exist in the database.`),
+				description: `The requested notification with ID ${id} could not be deleted because it does not exist in the system. Please verify the ID and try again.`
 			});
 		}
 
@@ -80,6 +88,9 @@ export class NotificationService {
 			where: { id }
 		});
 
-		this.logger.log(`Notification with ID ${id} has been deleted.`, NotificationService.name);
+		this.logger.log(
+			`Notification with ID ${id} was successfully deleted.`,
+			NotificationService.name
+		);
 	}
 }
