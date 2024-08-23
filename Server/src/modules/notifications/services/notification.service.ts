@@ -1,7 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+
 import { PrismaService } from "../../prisma/prisma.service";
 import { LoggerService } from "../../logger/services";
 import { NotificationDto } from "../dtos";
+import { CreateNotificationRequestDto } from "../dtos/create-notification-request-dto";
 
 @Injectable()
 export class NotificationService {
@@ -45,27 +47,40 @@ export class NotificationService {
 		return notifications.map((notification) => new NotificationDto(notification));
 	}
 
-	async createNotification(data: NotificationDto): Promise<NotificationDto> {
-		try {
-			const newNotification = await this.prisma.notification.create({
-				data
-			});
-			this.logger.log(
-				`Notification successfully created with ID ${newNotification.id}.`,
-				NotificationService.name
-			);
-			return new NotificationDto(newNotification);
-		} catch (error) {
-			this.logger.error(
-				"Failed to create the notification due to an issue with the provided data.",
-				NotificationService.name
-			);
-			throw new BadRequestException("Notification creation failed.", {
-				cause: error,
-				description:
-					"The system encountered an issue while attempting to create the notification. Please ensure all required data is correct and try again."
+	async createNotification(data: CreateNotificationRequestDto): Promise<NotificationDto> {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (!emailRegex.test(data.email)) {
+			this.logger.error(`Invalid email format provided: ${data.email}.`, NotificationService.name);
+			throw new BadRequestException(`Invalid email format: ${data.email}.`, {
+				cause: new Error(`Provided email: ${data.email} does not match the standard email format.`),
+				description: `The email address ${data.email} is not in a valid format. Please provide a correct email address and try again.`
 			});
 		}
+
+		const existingNotification = await this.prisma.notification.findUnique({
+			where: { email: data.email }
+		});
+
+		if (existingNotification) {
+			this.logger.error(
+				`Failed to create the notification. Email: ${data.email} is already registered.`,
+				NotificationService.name
+			);
+			throw new BadRequestException(`Email: ${data.email} is already registered.`, {
+				cause: new Error(`Duplicate email: ${data.email} in the database.`),
+				description: `The email address ${data.email} is already associated with an existing notification. Please use a different email address and try again.`
+			});
+		}
+
+		const newNotification = await this.prisma.notification.create({
+			data
+		});
+		this.logger.log(
+			`Notification successfully created with ID ${newNotification.id}.`,
+			NotificationService.name
+		);
+		return new NotificationDto(newNotification);
 	}
 
 	async deleteNotification(id: number): Promise<void> {
