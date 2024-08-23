@@ -3,7 +3,7 @@ import { Throttle } from "@nestjs/throttler";
 
 import { NotificationService } from "../services";
 import { LoggerService } from "../../logger/services";
-import { NotificationDto } from "../dtos";
+import { CreateNotificationRequestDto } from "../dtos/create-notification-request-dto";
 
 @Controller()
 export class NotificationController {
@@ -30,7 +30,7 @@ export class NotificationController {
 
 	@Throttle({ short: { ttl: 1000, limit: 1 } })
 	@Post("notification")
-	async createNotification(@Body() data: NotificationDto, @Ip() ip: string) {
+	async createNotification(@Body() data: CreateNotificationRequestDto, @Ip() ip: string) {
 		this.logger.log(
 			`Create notification request received from IP: ${ip}`,
 			NotificationController.name
