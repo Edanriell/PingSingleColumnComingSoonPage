@@ -67,7 +67,7 @@ export class NotificationService {
 				`Failed to create the notification. Email: ${data.email} is already registered.`,
 				NotificationService.name
 			);
-			throw new BadRequestException(`Email: ${data.email} is already registered.`, {
+			throw new BadRequestException(`Email: ${data.email} is already registered`, {
 				cause: new Error(`Duplicate email: ${data.email} in the database.`),
 				description: `The email address ${data.email} is already associated with an existing notification. Please use a different email address and try again.`
 			});

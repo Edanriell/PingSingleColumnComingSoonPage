@@ -1,1 +1,1 @@
-export * from "./notify-form.tsx";
+export * from "./notification-form.tsx";

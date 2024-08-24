@@ -8,6 +8,7 @@ type InputProps = {
 	type?: "email" | "password" | "text";
 	placeholder?: string;
 	classes?: string;
+	onInputChange?: (event: any) => void;
 };
 
 export const Input: Component<InputProps> = (props) => {
@@ -24,6 +25,7 @@ export const Input: Component<InputProps> = (props) => {
 				name={finalProps.name}
 				id={finalProps.name}
 				placeholder={finalProps.placeholder}
+				onChange={finalProps.onInputChange}
 			/>
 		</div>
 	);

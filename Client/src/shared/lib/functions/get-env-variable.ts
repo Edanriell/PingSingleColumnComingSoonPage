@@ -36,8 +36,3 @@ export function getEnvVariable<T extends string | number | boolean>(
 			return value as unknown as T;
 	}
 }
-
-export const apiUrl = getEnvVariable<string>("VITE_API_URL", {
-	required: true,
-	errorMessage: "API URL is missing. Please check your environment configuration."
-});
