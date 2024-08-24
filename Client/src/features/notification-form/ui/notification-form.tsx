@@ -28,11 +28,17 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 
 	const handleEmailChange = (event: any) => {
 		setEmail(event.target.value);
+
 		validateEmail({
 			email,
 			emailValidationStateSetter: setEmailValidationState,
 			errorMessageSetter: setErrorMessage,
 			successMessageSetter: setSuccessMessage
+		});
+
+		validateNotificationForm({
+			inputsValidationStates: [emailValidationState],
+			formValidationStateSetter: setFormValidationState
 		});
 	};
 
@@ -41,11 +47,6 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 
 		setErrorMessage(null);
 		setSuccessMessage(null);
-
-		validateNotificationForm({
-			inputsValidationStates: [emailValidationState],
-			formValidationStateSetter: setFormValidationState
-		});
 
 		if (formValidationState() === "invalid") return;
 
@@ -98,7 +99,11 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 					</p>
 				</div>
 			</Show>
-			<Button classes="notify-form__submit-button" type="submit">
+			<Button
+				isDisabled={formValidationState() !== "valid"}
+				classes="notify-form__submit-button"
+				type="submit"
+			>
 				Notify Me
 			</Button>
 		</form>
