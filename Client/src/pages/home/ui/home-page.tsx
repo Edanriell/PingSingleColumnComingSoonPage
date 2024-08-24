@@ -2,7 +2,7 @@ import "./home-page.less";
 
 import { Component } from "solid-js";
 
-import { NotifyForm } from "@features/notify-form/ui";
+import { NotificationForm } from "@features/notify-form/ui";
 
 import { MainLayout } from "@widgets/layouts/main/ui";
 
@@ -17,7 +17,7 @@ export const HomePage: Component = () => {
 						</h1>
 						<p class="coming-soon__text">Subscribe and get notified</p>
 					</div>
-					<NotifyForm classes="coming-soon__notify-form" />
+					<NotificationForm classes="coming-soon__notify-form" />
 					<div class="coming-soon__dashboard-image dashboard-image">
 						<picture>
 							<source

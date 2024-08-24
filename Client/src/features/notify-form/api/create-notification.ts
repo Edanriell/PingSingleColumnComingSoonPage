@@ -6,8 +6,8 @@ type CreateNotificationParameters = {
 
 export const createNotification = async ({ email }: CreateNotificationParameters) => {
 	try {
-		const response = await postData("/api/users/new", {
-			Email: email
+		const response = await postData("/api/notification", {
+			email: email
 		});
 
 		if (!response.ok) {
