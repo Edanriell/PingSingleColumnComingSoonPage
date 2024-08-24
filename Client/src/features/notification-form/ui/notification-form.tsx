@@ -1,6 +1,6 @@
 import "./notification-form.less";
 
-import { Component, createSignal, mergeProps } from "solid-js";
+import { Component, createSignal, mergeProps, Show } from "solid-js";
 
 import { Input } from "@shared/ui/input/ui";
 import { Button } from "@shared/ui/button/ui";
@@ -17,9 +17,9 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 	const finalProps = mergeProps({ classes: "" }, props);
 
 	const [email, setEmail] = createSignal<string>("");
-	const [emailValidationState, setEmailValidationState] = createSignal<"valid" | "invalid">(
-		"invalid"
-	);
+	const [emailValidationState, setEmailValidationState] = createSignal<
+		"valid" | "invalid" | "idle"
+	>("idle");
 	const [formValidationState, setFormValidationState] = createSignal<"valid" | "invalid">(
 		"invalid"
 	);
@@ -31,7 +31,8 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 		validateEmail({
 			email,
 			emailValidationStateSetter: setEmailValidationState,
-			errorMessageSetter: setErrorMessage
+			errorMessageSetter: setErrorMessage,
+			successMessageSetter: setSuccessMessage
 		});
 	};
 
@@ -55,7 +56,7 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 
 			const createdNotification = new Notification(response);
 
-			setSuccessMessage(`Email: ${createdNotification.email} successfully has been registered`);
+			setSuccessMessage(`Email: ${createdNotification.email} has been successfully registered`);
 		} catch (error) {
 			if (error instanceof Error) {
 				console.error("Error message:", error.message);
@@ -81,7 +82,22 @@ export const NotificationForm: Component<NotificationFormProps> = (props) => {
 				type="email"
 				placeholder="Your email address…"
 				onInputChange={handleEmailChange}
+				classes={emailValidationState() === "invalid" ? "input-invalid" : ""}
 			/>
+			<Show when={errorMessage()}>
+				<div class="notify-form__message-wrapper">
+					<p class="notify-form__message notify-form__message--color--festive-fennec">
+						{errorMessage()}
+					</p>
+				</div>
+			</Show>
+			<Show when={successMessage()}>
+				<div class="notify-form__message-wrapper">
+					<p class="notify-form__message notify-form__message--color--ufo-green">
+						{successMessage()}
+					</p>
+				</div>
+			</Show>
 			<Button classes="notify-form__submit-button" type="submit">
 				Notify Me
 			</Button>

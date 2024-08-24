@@ -2,7 +2,7 @@ import "./home-page.less";
 
 import { Component } from "solid-js";
 
-import { NotificationForm } from "@features/notify-form/ui";
+import { NotificationForm } from "@features/notification-form/ui";
 
 import { MainLayout } from "@widgets/layouts/main/ui";
 
